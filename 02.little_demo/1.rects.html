@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <h2>Canvas - Line Rects</h2>
+
+  <section>
+    <canvas width="600" height="600"></canvas>
+  </section>
+
+  <script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    function draw() {
+
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      let x = 70;
+      let y = 70;
+  
+      for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 6; j++) {
+          ctx.lineWidth = Math.random() * 5 + 1;
+          ctx.strokeRect(x + 80 * i, y + 80 * j, 60, 60);
+        }
+      }
+    }
+
+    draw();
+    setInterval(draw, 1000);
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <h2>Canvas - Random Line</h2>
+
+  <section>
+    <canvas width="600" height="600"></canvas>
+  </section>
+
+  <script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // --------------------------------------------------
+    // random line
+    (function randomLine() {
+      let origin = 300;
+      let x = 300;
+      let y = 300;
+      ctx.lineCap = 'round';
+      ctx.lineWidth = 2;
+
+      function randomLine() {
+        ctx.beginPath();
+
+        ctx.moveTo(x, y);
+
+        let newX = x + (Math.random() * 80 - 40);
+        let newY = y + (Math.random() * 80 - 40);
+
+        ctx.lineTo(newX, newY);
+        ctx.stroke();
+
+        x = Math.abs(newX - origin) > 300 ? newX - origin > 0 ? newX - 20 : 20 : newX;
+        y = Math.abs(newY - origin) > 300 ? newY - origin > 0 ? newY - 20 : 20 : newY;
+      }
+
+      setInterval(randomLine, 50);
+    })();
+
+
+  </script>
+</body>
+
+</html>

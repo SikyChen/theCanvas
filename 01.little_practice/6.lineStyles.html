@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <h2>Canvas - Line Styles</h2>
+
+  <section>
+    <canvas width="600" height="600"></canvas>
+  </section>
+
+  <script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // --------------------------------------------------
+    // lineWidth
+
+    for (let i = 0; i < 10; i++) {
+      ctx.beginPath();
+
+      ctx.lineWidth = i + 1;
+      ctx.moveTo(i * 15 + 10, 10);
+      ctx.lineTo(i * 15 + 10, 200);
+      ctx.stroke();
+    }
+    
+
+    // --------------------------------------------------
+    // lineCap 线段顶点的样式
+
+    var lineCap = ['butt', 'round', 'square'];
+
+    for (let i = 0; i < 3; i++) {
+      ctx.beginPath();
+
+      ctx.lineCap = lineCap[i];
+      ctx.moveTo(i * 20 + 300, 10);
+      ctx.lineTo(i * 20 + 300, 200);
+      ctx.stroke();
+    }
+
+
+    // --------------------------------------------------
+    // 
+
+
+  </script>
+</body>
+
+</html>

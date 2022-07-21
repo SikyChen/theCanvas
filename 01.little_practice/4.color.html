@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <h2>Canvas - Color</h2>
+
+  <section>
+    <canvas width="600" height="600"></canvas>
+  </section>
+
+  <script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // --------------------------------------------------
+
+    let startX = 100;
+    let startY = 100;
+
+    for (let i = 0; i < 6; i++) {
+      for (let j = 0; j < 6; j++) {
+
+        let r = Math.floor(255 - 42.5 * i);
+        let g = Math.floor(255 - 42.5 * j);
+        let b = 0;
+
+        ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+        ctx.fillRect(startX + i * 25, startY + j * 25, 25, 25);
+      }
+    }
+
+    // --------------------------------------------------
+
+    startX = 350;
+    startY = 100;
+    let radius = 12.5, realRadius = 10;
+
+    for (let i = 0; i < 6; i++) {
+      for (let j = 0; j < 6; j++) {
+
+        let r = Math.floor(255 - 42.5 * i);
+        let g = 0;
+        let b = Math.floor(255 - 42.5 * j);
+
+        let x = startX + radius + i * 25;
+        let y = startY + radius + j * 25;
+
+        ctx.beginPath();
+        ctx.strokeStyle = `rgb(${r}, ${g}, ${b})`;
+        ctx.arc(x, y, realRadius, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <h2>Canvas - Path2D</h2>
+
+  <section>
+    <canvas width="600" height="600"></canvas>
+  </section>
+
+  <script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = '#eee';
+    ctx.strokeStyle = 'red';
+
+    // 创建 Path2D 对象实例
+    const rectangle = new Path2D();
+
+    // 有了 Path2D 对象，就可以不用直接调用 ctx 上的方法
+    // 这样的好处是，对象可以被多次使用
+    // 下面这里将相同参数的矩形渲染两次
+    rectangle.rect(50, 50, 100, 100);
+
+    ctx.fill(rectangle);
+    ctx.stroke(rectangle);
+
+    
+    // 画圆
+    const circle = new Path2D();
+    circle.arc(300, 100, 50, 0, Math.PI * 2);
+
+    ctx.fill(circle);
+    ctx.stroke(circle);
+
+
+    // 使用 svg 初始化
+    var p = new Path2D("M50 200 h 80 v 80 h -80 Z");
+    ctx.fill(p);
+    ctx.stroke(p);
+    
+  </script>
+</body>
+</html>

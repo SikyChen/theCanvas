@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <h2>Canvas - 矩形</h2>
+
+  <section>
+    <canvas width="600" height="600"></canvas>
+  </section>
+
+  <script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // 定义填充样式
+    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    // 绘制第一个填充矩形
+    // 立即绘制，所以当前操作可以用到上一行定义的 fillStyle ，且不受到下面一行的 fillStyle 影响
+    ctx.fillRect(50, 20, 150, 100);
+
+    // 绘制第二个填充矩形
+    ctx.fillStyle = 'rgba(0, 0, 255, .5)';
+    ctx.fillRect(100, 100, 150, 100);
+
+    // 擦除一个矩形区域
+    ctx.clearRect(120, 80, 50, 50);
+
+    // 定义边框样式
+    ctx.strokeStyle = 'purple';
+    // 绘制一个边框矩形
+    ctx.strokeRect(400, 20, 150, 100);
+  </script>
+</body>
+</html>

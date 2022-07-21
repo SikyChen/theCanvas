@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <h2>Canvas - 路径</h2>
+
+  <section>
+    <canvas width="600" height="600"></canvas>
+  </section>
+
+  <script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // --------------------------------------- 
+    // 三角形
+
+    // 三角形起始点
+    const triangleX = 50;
+    const triangleY = 100;
+
+    // 开始路径 三角形
+    ctx.beginPath();
+
+    // 设置起点为 75,50 的位置
+    ctx.moveTo(triangleX, triangleY);
+
+    // 绘制直线
+    ctx.lineTo(triangleX + 30, triangleY + 20);
+    ctx.lineTo(triangleX + 30, triangleY - 20);
+
+    // 填充
+    ctx.fillStyle = 'red';
+    ctx.fill();
+
+
+    // --------------------------------------- 
+    // 移动笔触
+
+    // 笑脸圆心点
+    const centerX = 150;
+    const centerY = 100;
+
+    // 开始路径 笑脸
+    ctx.beginPath();
+
+    // 绘制一个大圆 脸
+    // 圆心x, 圆心y, 半径, 起始角度, 结束角度, 是否逆时针
+    ctx.arc(centerX, centerY, 50, 0, Math.PI * 2, true);
+
+    // 移动画笔到嘴巴的位置
+    ctx.moveTo(centerX + 35, centerY);
+    // 绘制嘴巴
+    ctx.arc(centerX, centerY, 35, 0, Math.PI, false);
+
+    // 移动画笔到左眼的位置
+    ctx.moveTo(centerX - 10, centerY - 10);
+    // 绘制左眼
+    ctx.arc(centerX - 15, centerY - 10, 5, 0, Math.PI * 2, true);
+
+    // 移动画笔到右眼的位置
+    ctx.moveTo(centerX + 20, centerY - 10);
+    // 绘制右眼
+    ctx.arc(centerX + 15, centerY - 10, 5, 0, Math.PI * 2);
+
+    // 以线结束绘制
+    ctx.stroke();
+
+
+    // --------------------------------------- 
+    // 线
+
+    // 填充三角形
+    ctx.beginPath();
+    ctx.moveTo(25, 200);
+    ctx.lineTo(150, 200);
+    ctx.lineTo(25, 300);
+    ctx.fillStyle = 'black';
+    ctx.fill();
+
+    // 描边三角形
+    ctx.beginPath();
+    ctx.moveTo(175, 200);
+    ctx.lineTo(175, 300);
+    ctx.lineTo(50, 300);
+    ctx.closePath();
+    ctx.stroke();
+
+
+    // --------------------------------------- 
+    // 圆弧
+
+    function drawArcs() {
+      const startX = 50;
+      const startY = 400;
+      const radius = 20;
+      const startAngle = 0;
+
+      for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 3; j++) {
+          ctx.beginPath();
+
+          var x = startX + j * 50;
+          var y = startY + i * 50;
+          var endAngle = Math.PI + (Math.PI * j / 2);
+          var counterclockwise = i % 2 == 0 ? false : true; // 顺时针或逆时针
+
+          ctx.arc(x, y, radius, startAngle, endAngle, counterclockwise);
+
+          if (i > 1) {
+            ctx.fill();
+          } else {
+            ctx.stroke();
+          }
+        }
+      }
+    }
+    drawArcs();
+
+
+    // --------------------------------------- 
+    // 贝塞尔曲线
+
+    function drawQuadraticCurve() {
+      const x = 250;
+      const y = 30;
+
+      ctx.beginPath();
+      ctx.moveTo(x + 75, y + 25);
+
+      // 绘制二次贝塞尔曲线
+      ctx.quadraticCurveTo(x + 25,  y + 25,  x + 25,  y + 62.5);
+      ctx.quadraticCurveTo(x + 25,  y + 100, x + 50,  y + 100);
+      ctx.quadraticCurveTo(x + 50,  y + 120, x + 30,  y + 125);
+      ctx.quadraticCurveTo(x + 60,  y + 120, x + 65,  y + 100);
+      ctx.quadraticCurveTo(x + 125, y + 100, x + 125, y + 62.5);
+      ctx.quadraticCurveTo(x + 125, y + 25,  x + 75,  y + 25);
+
+      ctx.stroke();
+    }
+    drawQuadraticCurve();
+
+    function drawBezierCurve() {
+      const x = 400;
+      const y = 30;
+
+      ctx.beginPath();
+
+      // 绘制三次贝塞尔曲线
+      ctx.bezierCurveTo(x + 75,  y + 37,   x + 70,  y + 25,   x + 50,  y + 25);
+      ctx.bezierCurveTo(x + 20,  y + 25,   x + 20,  y + 62.5, x + 20,  y + 62.5);
+      ctx.bezierCurveTo(x + 20,  y + 80,   x + 40,  y + 102,  x + 75,  y + 120);
+      ctx.bezierCurveTo(x + 110, y + 102,  x + 130, y + 80,   x + 130, y + 62.5);
+      ctx.bezierCurveTo(x + 130, y + 62.5, x + 130, y + 25,   x + 100, y + 25);
+      ctx.bezierCurveTo(x + 85,  y + 25,   x + 75,  y + 37,   x + 75,  y + 40);
+
+      ctx.fill();
+    }
+    drawBezierCurve();
+
+
+    // --------------------------------------- 
+    // 另一种方式绘制矩形
+
+    ctx.beginPath();
+    ctx.rect(250, 200, 120, 80);
+    ctx.stroke();
+
+    // --------------------------------------- 
+    // 吃豆人
+    // EOF
+
+  </script>
+</body>
+
+</html>
