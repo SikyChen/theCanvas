@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <h2>Canvas - Gradients 渐变</h2>
+
+  <section>
+    <canvas width="600" height="600"></canvas>
+  </section>
+
+  <script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // 线性渐变 createLinearGradient ---------------------------------
+
+    // 线性黄绿
+    const linearGradient = ctx.createLinearGradient(100, 10, 400, 10);
+    linearGradient.addColorStop(0, 'yellow');
+    linearGradient.addColorStop(1, 'green');
+
+    ctx.fillStyle = linearGradient;
+    ctx.fillRect(100, 10, 400, 100);
+
+
+    // 球场
+    const bg = ctx.createLinearGradient(0, 200, 0, 300);
+    bg.addColorStop(0, '#00ABEB');
+    bg.addColorStop(0.5, '#fff');
+    bg.addColorStop(0.5, '#26C000');
+    bg.addColorStop(1, '#fff');
+
+    ctx.fillStyle = bg;
+    ctx.fillRect(200, 200, 100, 100);
+
+    const goal = ctx.createLinearGradient(0, 250, 0, 270);
+    goal.addColorStop(0.5, '#000');
+    goal.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+    ctx.strokeStyle = goal;
+    ctx.strokeRect(230, 230, 40, 40);
+
+
+    // 径向渐变 createRadialGradient ---------------------------------
+
+    // 几个球
+    const ball1 = ctx.createRadialGradient(100, 400, 10, 110, 410, 50);
+    ball1.addColorStop(0, 'yellow');
+    ball1.addColorStop(0.9, 'green');
+    ball1.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      
+    ctx.fillStyle = ball1;
+    ctx.fillRect(0, 300, 600, 300);
+
+    const ball2 = ctx.createRadialGradient(220, 470, 15, 230, 480, 60);
+    ball2.addColorStop(0, 'white');
+    ball2.addColorStop(0.9, 'blue');
+    ball2.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      
+    ctx.fillStyle = ball2;
+    ctx.fillRect(0, 300, 600, 300);
+
+    const ball3 = ctx.createRadialGradient(430, 400, 50, 420, 420, 100);
+    ball3.addColorStop(0, '#00C9FF');
+    ball3.addColorStop(0.8, '#00B5E2');
+    ball3.addColorStop(1, 'rgba(0,201,255,0)');
+      
+    ctx.fillStyle = ball3;
+    ctx.fillRect(0, 300, 600, 300);
+
+  </script>
+</body>
+
+</html>

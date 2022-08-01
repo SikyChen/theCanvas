@@ -67,6 +67,30 @@
     }
 
 
+    // --------------------------------------------------
+    // setLineDash lineDashOffset 设置虚线
+
+    ctx.lineWidth = 2;
+
+    function drawAntDashLine(offset) {
+      if (offset > 30) {
+        offset = 0;
+      }
+
+      ctx.clearRect(0, 300, 220, 220);
+      ctx.setLineDash([6, 4]);
+      ctx.lineDashOffset = -offset;
+      ctx.strokeRect(10, 310, 200, 200);
+
+      setTimeout(() => {
+        offset++;
+        drawAntDashLine(offset);
+      }, 30);
+    }
+
+    drawAntDashLine(1);
+
+
   </script>
 </body>
 

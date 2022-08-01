@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <h2>Canvas - Text 绘制文本</h2>
+
+  <section>
+    <canvas width="600" height="600"></canvas>
+  </section>
+
+  <script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // 文字
+    ctx.font = '30px Times New Roman';
+    ctx.fillStyle = 'black';
+    ctx.fillText('Hello Fill Text! 文本！', 10, 50);
+    ctx.strokeText('Hello Stoke Text! 文本！', 10, 100);
+
+    ctx.font = '20px';
+    ctx.fillText('这是一段比较长的文本，这行没有设置最大宽度，看看是什么效果呢？', 10, 150);
+    ctx.fillText('这也是一段比较长的文本，这行设置了最大宽度，看看是什么效果呢？', 10, 200, 400);
+
+    ctx.font = '14px';
+    ctx.textAlign = 'right';
+    ctx.fillText('这行文本是靠右的', 600, 250);
+
+    // 预测文本宽度
+    ctx.font = '14px';
+    ctx.textAlign = 'left';
+    const content = '这段文本会被测量宽度，看看我是多宽呢？';
+    const text = ctx.measureText(content);
+    ctx.fillText(content, 0, 300);
+    ctx.fillText('宽度为：' + text.width, 0, 340);
+    console.log('text.width', text.width);
+  </script>
+</body>
+
+</html>

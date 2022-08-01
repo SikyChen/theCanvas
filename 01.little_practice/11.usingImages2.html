@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+  <!-- <link rel="stylesheet" href="../css/style.css"> -->
+  <style>
+    body {
+      /* background: 0 -100px repeat-x url(./static/images/1.jpeg) #4F191A; */
+      background-color: bisque;
+      margin: 10px;
+    }
+
+    img {
+      display: none;
+    }
+
+    table {
+      margin: 0 auto;
+    }
+
+    td {
+      padding: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Canvas - Using Images 使用图像</h2>
+
+  <table>
+    <tr>
+      <td><img src="./static/images/1.jpeg"></td>
+      <td><img src="./static/images/1.jpeg"></td>
+      <td><img src="./static/images/1.jpeg"></td>
+      <td><img src="./static/images/1.jpeg"></td>
+    </tr>
+    <tr>
+      <td><img src="./static/images/2.jpg"></td>
+      <td><img src="./static/images/2.jpg"></td>
+      <td><img src="./static/images/2.jpg"></td>
+      <td><img src="./static/images/2.jpg"></td>
+    </tr>
+  </table>
+
+
+  <script>
+    function draw() {
+
+      // Loop through all images
+      for (i = 0; i < document.images.length; i++) {
+
+        // Don't add a canvas for the frame image
+        if (document.images[i].getAttribute('id') != 'frame') {
+
+          // Create canvas element
+          const canvas = document.createElement('canvas');
+          canvas.setAttribute('width', 132);
+          canvas.setAttribute('height', 150);
+
+          // Insert before the image
+          document.images[i].parentNode.insertBefore(canvas, document.images[i]);
+
+          ctx = canvas.getContext('2d');
+
+          // Draw image to canvas
+          ctx.drawImage(document.images[i], 0, 0, 150, 150);
+        }
+      }
+    }
+
+    window.onload = () => {
+      draw();
+    }
+  </script>
+
+</body>
+
+</html>

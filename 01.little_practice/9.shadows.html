@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <h2>Canvas - Shadows 阴影</h2>
+
+  <section>
+    <canvas width="600" height="600"></canvas>
+  </section>
+
+  <script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // 文字
+    ctx.font = '18px Times New Roman';
+    ctx.fillStyle = 'black';
+    ctx.fillText('Hello Canvas!', 10, 50);
+
+    // 阴影文字
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = -2;
+    ctx.shadowBlur = 2;
+    ctx.shadowColor = 'rgba(255, 0, 0, 0.5)';
+
+    ctx.fillText('Hello Shadow Canvas!', 10, 100);
+
+    // 阴影矩形
+    ctx.shadowOffsetX = 12;
+    ctx.shadowOffsetY = 12;
+    ctx.shadowBlur = 4;
+    ctx.shadowColor = '#000';
+
+    ctx.strokeStyle = '#000';
+    ctx.strokeRect(10, 200, 200, 100);
+
+
+    ctx.shadowOffsetX = 12;
+    ctx.shadowOffsetY = 12;
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = '#ddd';
+    ctx.fillStyle = '#aaa';
+    ctx.fillRect(300, 200, 200, 100);
+
+  </script>
+</body>
+
+</html>
